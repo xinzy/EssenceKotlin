@@ -31,6 +31,7 @@ dependencies {
     // Support
     compile rootProject.ext.dependencies.supportAppcompat
     compile rootProject.ext.dependencies.supportDesign
+    compile rootProject.ext.dependencies.supportCardview
 
     // gson
     compile rootProject.ext.dependencies.gson

@@ -8,7 +8,7 @@ import com.xinzy.essence.kotlin.util.EssenceException
 interface ApiCallback<T> {
     fun onStart()
 
-    fun onSuccess(data: T)
+    fun onSuccess(data: T?)
 
     fun onFailure(e: EssenceException)
 }

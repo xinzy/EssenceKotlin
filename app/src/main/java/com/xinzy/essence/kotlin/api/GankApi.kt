@@ -1,6 +1,5 @@
 package com.xinzy.essence.kotlin.api
 
-import android.support.annotation.Nullable
 import com.xinzy.essence.kotlin.model.DayType
 import com.xinzy.essence.kotlin.model.Essence
 
@@ -9,8 +8,8 @@ import com.xinzy.essence.kotlin.model.Essence
  */
 interface GankApi {
 
-    fun category(category: String, count: Int, page: Int, @Nullable callback: ApiCallback<List<Essence>>)
+    fun category(category: String, count: Int, page: Int, callback: ApiCallback<List<Essence>>?)
 
-    fun day(year: Int, month: Int, day: Int, @Nullable callback: ApiCallback<DayType>)
+    fun day(year: Int, month: Int, day: Int, callback: ApiCallback<DayType>?)
 
 }
