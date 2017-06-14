@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/menuCategory">
+        <item
+            android:id="@+id/menuAndroid"
+            android:title="@string/menuAndroid" />
+        <item
+            android:id="@+id/menuIOS"
+            android:title="@string/menuIos" />
+        <item
+            android:id="@+id/menuResource"
+            android:title="@string/menuResource" />
+        <item
+            android:id="@+id/menuFront"
+            android:title="@string/menuFront" />
+        <item
+            android:id="@+id/menuRecommend"
+            android:title="@string/menuRecommend" />
+        <item
+            android:id="@+id/menuApp"
+            android:title="@string/menuApp" />
+    </group>
+
+    <group android:id="@+id/menuSetting">
+        <item
+            android:id="@+id/menuTheme"
+            android:title="@string/menuTheme"
+            app:actionLayout="@layout/action_view_switcher"/>
+    </group>
+</menu>

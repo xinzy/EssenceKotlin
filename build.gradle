@@ -1,0 +1,56 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.1.2-3'
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    android = [
+            compileSdkVersion: 25,
+            buildToolsVersion: "25.0.3",
+            minSdkVersion: 21,
+            targetSdkVersion: 25,
+            androidSupport: '25.3.1',
+    ]
+
+    dependencies = [
+            // Android
+            supportAppcompat: "com.android.support:appcompat-v7:${android.androidSupport}",
+            supportCardview: "com.android.support:cardview-v7:${android.androidSupport}",
+            supportDesign: "com.android.support:design:${android.androidSupport}",
+
+            // gson
+            gson: 'com.google.code.gson:gson:2.8.1',
+
+            // Square
+            okhttp: 'com.squareup.okhttp3:okhttp:3.8.0',
+            retrofit: 'com.squareup.retrofit2:retrofit:2.3.0',
+            retrofitConvert: 'com.squareup.retrofit2:converter-gson:2.3.0',
+
+            // rx
+            rxjava: 'io.reactivex:rxjava:1.3.0',
+            rxAndroid: 'io.reactivex:rxandroid:1.2.1',
+            rxAdapter: 'com.squareup.retrofit2:adapter-rxjava:2.3.0',
+
+    ]
+}
