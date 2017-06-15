@@ -35,16 +35,19 @@ class MainPresenter : MainContract.Presenter {
 
         if (isRefresh) mPage = 1
 
-        mGankApi.category(mCategory, mPage, mPerPage, object: ApiCallback<List<Essence>> {
+        mGankApi.category(mCategory, mPerPage, mPage, object: ApiCallback<List<Essence>> {
             override fun onStart() {
                 mView.showLoading()
             }
 
             override fun onSuccess(data: List<Essence>?) {
+                isLoading = false
                 mView.hideLoading()
+                mView.showData(data, isRefresh)
             }
 
             override fun onFailure(e: EssenceException) {
+                isLoading = false
                 mView.hideLoading()
             }
         })

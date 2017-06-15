@@ -1,6 +1,7 @@
 package com.xinzy.essence.kotlin.base
 
 import android.app.Activity
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.View
 import android.widget.Toast
@@ -17,3 +18,5 @@ inline fun <reified T : View> Fragment.find(id: Int): T = view?.findViewById(id)
 fun Activity.dp2px(dp: Int) = (resources.displayMetrics.density * dp + 0.5f).toInt()
 
 fun Activity.toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+
+fun Activity.snack(view: View, msg: String) = Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show()

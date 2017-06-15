@@ -40,6 +40,7 @@ dependencies {
     compile rootProject.ext.dependencies.okhttp
     compile rootProject.ext.dependencies.retrofit
     compile rootProject.ext.dependencies.retrofitConvert
+    compile rootProject.ext.dependencies.picasso
 
     // rx
     compile rootProject.ext.dependencies.rxjava

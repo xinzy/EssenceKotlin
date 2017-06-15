@@ -20,6 +20,6 @@ interface MainContract {
 
         fun hideLoading()
 
-        fun showData(data: List<Essence>, refresh: Boolean)
+        fun showData(data: List<Essence>?, refresh: Boolean)
     }
 }
