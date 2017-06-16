@@ -18,7 +18,7 @@ class EssenceApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         sInstance = this
-        Picasso.setSingletonInstance(Picasso.Builder(this).downloader(PicassoDownloader()).build())
+        Picasso.setSingletonInstance(Picasso.Builder(this).downloader(PicassoDownloader(this)).build())
     }
 
 }
