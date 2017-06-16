@@ -64,7 +64,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         navigationView.inflateMenu(R.menu.menu_main_nav)
         navigationView.setNavigationItemSelectedListener(this)
 
-        val themeSwicher = MenuItemCompat.getActionView(navigationView.getMenu().findItem(R.id.menuTheme)).findViewById(R.id.viewSwitch) as SwitchCompat
+        val themeSwicher = MenuItemCompat.getActionView(navigationView.menu.findItem(R.id.menuTheme)).findViewById(R.id.viewSwitch) as SwitchCompat
         themeSwicher.isChecked = isNightMode()
         themeSwicher.setOnCheckedChangeListener { _, isChecked -> run {
             setNightMode(isChecked)
@@ -149,6 +149,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        CategoryActivity.start(this, item.title.toString())
 
         mDrawerLayout.closeDrawer(GravityCompat.START)
         return true

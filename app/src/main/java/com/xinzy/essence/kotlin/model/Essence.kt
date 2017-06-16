@@ -22,4 +22,7 @@ class Essence {
     var who: String = ""
     var images: Array<String> = arrayOf()
     var readability: String = ""
+
+    fun hasImg() = images.isNotEmpty()
+    fun getImg() = if (hasImg()) images[0] else ""
 }
