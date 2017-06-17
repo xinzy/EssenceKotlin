@@ -25,7 +25,7 @@
     <string name="searchHint">搜索干货&#8230;</string>
     <string name="pressToExit">再按一次返回键退出程序</string>
 
-    <string name="aboutContent">感谢对该项目的支持的关注，本项目API来自干货集中营(http://gank.io)\n本项目会持续更新，如果各小主有什么意见或建议的话请发Email给我</string>
+    <string name="aboutContent">感谢对该项目的支持的关注，该项目是干货APP( https://github.com/xinzy/Essence )的Kotlin版本，本项目API来自干货集中营( http://gank.io )\n本项目会持续更新，如果各小主有什么意见或建议的话请发Email给我</string>
     <string name="aboutEmail">shaozengy@gmail.com</string>
     <string name="remindWriteExternalStorage">为了您App的流畅性，请开启读写存储卡的权限</string>
     <string name="ok">确定</string>

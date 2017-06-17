@@ -52,19 +52,16 @@ class BeautyAdapter : RecyclerView.Adapter<BeautyAdapter.Holder> {
     fun addAll(list: List<Essence>?) {
         val count = mData.size
         if (list != null) mData.addAll(list)
-        notifyItemInserted(count - 1)
+        notifyItemInserted(count)
     }
 
-    inner class Holder : RecyclerView.ViewHolder, View.OnClickListener {
-        private var img: ImageView
-        private var text: TextView
+    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        private var img: ImageView = itemView.find(R.id.itemImg)
+        private var text: TextView = itemView.find(R.id.itemTitle)
 
         private lateinit var mItem: Essence
 
-        constructor(itemView: View) : super(itemView) {
-            img = itemView.find(R.id.itemImg)
-            text = itemView.find(R.id.itemTitle)
-
+        init {
             img.setOnClickListener(this)
             text.setOnClickListener(this)
         }
@@ -78,16 +75,15 @@ class BeautyAdapter : RecyclerView.Adapter<BeautyAdapter.Holder> {
         override fun onClick(v: View) {
             val parent = this@BeautyAdapter
             when (v.id) {
-                R.id.itemImg -> parent.mOnItemClickListener?.onImageClick(mItem)
-                R.id.itemTitle -> parent.mOnItemClickListener?.onTextClick(mItem)
+                R.id.itemImg -> parent.mOnItemClickListener?.onImageClick(img, mItem)
+                R.id.itemTitle -> parent.mOnItemClickListener?.onTextClick(text, mItem)
             }
-
         }
     }
 
     interface OnItemClickListener {
-        fun onImageClick(essence: Essence)
+        fun onImageClick(view: View, essence: Essence)
 
-        fun onTextClick(essence: Essence)
+        fun onTextClick(view: View, essence: Essence)
     }
 }

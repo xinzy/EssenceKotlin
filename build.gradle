@@ -17,6 +17,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -38,6 +39,7 @@ ext {
             supportAppcompat: "com.android.support:appcompat-v7:${android.androidSupport}",
             supportCardview: "com.android.support:cardview-v7:${android.androidSupport}",
             supportDesign: "com.android.support:design:${android.androidSupport}",
+            constraintLayout: 'com.android.support.constraint:constraint-layout:1.0.2',
 
             // gson
             gson: 'com.google.code.gson:gson:2.8.1',
@@ -53,5 +55,6 @@ ext {
             rxAndroid: 'io.reactivex:rxandroid:1.2.1',
             rxAdapter: 'com.squareup.retrofit2:adapter-rxjava:2.3.0',
 
+            photoView: 'com.github.chrisbanes:PhotoView:2.0.0',
     ]
 }

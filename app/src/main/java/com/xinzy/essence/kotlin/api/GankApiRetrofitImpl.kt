@@ -1,6 +1,6 @@
 package com.xinzy.essence.kotlin.api
 
-import com.xinzy.essence.kotlin.api.rxjava.GankService
+import com.xinzy.essence.kotlin.api.retrofit.GankService
 import com.xinzy.essence.kotlin.http.HttpUtil
 import com.xinzy.essence.kotlin.model.DayType
 import com.xinzy.essence.kotlin.model.Essence
@@ -14,7 +14,7 @@ import retrofit2.Response
 /**
  * Created by xinzy on 17/6/14.
  */
-class GankApiRxImpl: GankApi {
+class GankApiRetrofitImpl : GankApi {
 
     override fun category(category: String, count: Int, page: Int, callback: ApiCallback<List<Essence>>?) {
 

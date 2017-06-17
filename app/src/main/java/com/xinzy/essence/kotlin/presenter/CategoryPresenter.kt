@@ -2,7 +2,7 @@ package com.xinzy.essence.kotlin.presenter
 
 import com.xinzy.essence.kotlin.api.ApiCallback
 import com.xinzy.essence.kotlin.api.GankApi
-import com.xinzy.essence.kotlin.api.GankApiRxImpl
+import com.xinzy.essence.kotlin.api.GankApiRetrofitImpl
 import com.xinzy.essence.kotlin.contract.CategoryContract
 import com.xinzy.essence.kotlin.model.Essence
 import com.xinzy.essence.kotlin.util.EssenceException
@@ -26,7 +26,7 @@ class CategoryPresenter : CategoryContract.Presenter {
     constructor(view: CategoryContract.View, cat: String) {
         mView = view
         mCategory = cat
-        mGankApi = GankApiRxImpl()
+        mGankApi = GankApiRetrofitImpl()
 
         mView.setPresenter(this)
     }

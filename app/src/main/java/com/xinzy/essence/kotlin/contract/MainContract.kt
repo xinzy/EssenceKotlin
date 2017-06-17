@@ -11,7 +11,7 @@ interface MainContract {
 
     interface Presenter : BasePresenter {
 
-        fun load(isRefresh: Boolean)
+        fun loading(refresh: Boolean)
 
     }
 

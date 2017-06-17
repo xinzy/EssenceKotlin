@@ -19,4 +19,4 @@ fun Activity.dp2px(dp: Int) = (resources.displayMetrics.density * dp + 0.5f).toI
 
 fun Activity.toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
 
-fun Activity.snack(view: View, msg: String) = Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show()
+fun snack(view: View, msg: String) = Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show()

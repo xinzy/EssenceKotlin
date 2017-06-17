@@ -2,7 +2,7 @@ package com.xinzy.essence.kotlin.presenter
 
 import com.xinzy.essence.kotlin.api.ApiCallback
 import com.xinzy.essence.kotlin.api.GankApi
-import com.xinzy.essence.kotlin.api.GankApiRxImpl
+import com.xinzy.essence.kotlin.api.GankApiRetrofitImpl
 import com.xinzy.essence.kotlin.contract.MainContract
 import com.xinzy.essence.kotlin.model.Essence
 import com.xinzy.essence.kotlin.util.EssenceException
@@ -26,24 +26,24 @@ class MainPresenter : MainContract.Presenter {
         mView = view
         mView.setPresenter(this)
 
-        mGankApi = GankApiRxImpl()
+        mGankApi = GankApiRetrofitImpl()
     }
 
-    override fun load(isRefresh: Boolean) {
+    override fun loading(refresh: Boolean) {
         if (isLoading) return
         isLoading = true
 
-        if (isRefresh) mPage = 1
+        if (refresh) mPage = 1
 
         mGankApi.category(mCategory, mPerPage, mPage, object: ApiCallback<List<Essence>> {
             override fun onStart() {
-                if (isRefresh) mView.showLoading()
+                if (refresh) mView.showLoading()
             }
 
             override fun onSuccess(data: List<Essence>?) {
                 isLoading = false
                 mView.hideLoading()
-                mView.showData(data, isRefresh)
+                mView.showData(data, refresh)
                 mPage ++
             }
 
@@ -55,6 +55,6 @@ class MainPresenter : MainContract.Presenter {
     }
 
     override fun start() {
-        load(true)
+        loading(true)
     }
 }

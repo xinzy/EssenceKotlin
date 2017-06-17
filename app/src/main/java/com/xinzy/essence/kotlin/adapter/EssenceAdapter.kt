@@ -53,7 +53,7 @@ class EssenceAdapter : RecyclerView.Adapter<EssenceAdapter.Holder>() {
         if (data != null && data.isNotEmpty()) {
             mDatas.addAll(data)
         }
-        notifyItemInserted(count - 1)
+        notifyItemInserted(count)
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

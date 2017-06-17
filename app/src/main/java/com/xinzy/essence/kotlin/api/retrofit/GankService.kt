@@ -1,4 +1,4 @@
-package com.xinzy.essence.kotlin.api.rxjava
+package com.xinzy.essence.kotlin.api.retrofit
 
 import com.xinzy.essence.kotlin.http.PATH_CATEGORY
 import com.xinzy.essence.kotlin.http.PATH_DAY

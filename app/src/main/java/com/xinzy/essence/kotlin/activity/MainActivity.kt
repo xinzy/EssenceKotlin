@@ -21,6 +21,7 @@ import android.support.v7.widget.SwitchCompat
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.xinzy.essence.kotlin.R
 import com.xinzy.essence.kotlin.adapter.BeautyAdapter
 import com.xinzy.essence.kotlin.base.BaseActivity
@@ -64,9 +65,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         navigationView.inflateMenu(R.menu.menu_main_nav)
         navigationView.setNavigationItemSelectedListener(this)
 
-        val themeSwicher = MenuItemCompat.getActionView(navigationView.menu.findItem(R.id.menuTheme)).findViewById(R.id.viewSwitch) as SwitchCompat
-        themeSwicher.isChecked = isNightMode()
-        themeSwicher.setOnCheckedChangeListener { _, isChecked -> run {
+        val themeSwitcher = MenuItemCompat.getActionView(navigationView.menu.findItem(R.id.menuTheme)).findViewById(R.id.viewSwitch) as SwitchCompat
+        themeSwitcher.isChecked = isNightMode()
+        themeSwitcher.setOnCheckedChangeListener { _, isChecked -> run {
             setNightMode(isChecked)
             recreate()
         }}
@@ -76,17 +77,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         mRecyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && !recyclerView!!.canScrollVertically(1)) {
-                    mPresenter.load(false)
+                    mPresenter.loading(false)
                 }
             }
         })
         mAdapter = BeautyAdapter(null)
         mAdapter.setOnItemClickListener(object: BeautyAdapter.OnItemClickListener {
-            override fun onImageClick(essence: Essence) {
-                // TODO
+            override fun onImageClick(view: View, essence: Essence) {
+                ImageActivity.start(this@MainActivity, view, essence)
             }
 
-            override fun onTextClick(essence: Essence) {
+            override fun onTextClick(view: View, essence: Essence) {
                 // TODO
             }
         })
@@ -121,7 +122,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onRefresh() {
-        mPresenter.load(true)
+        mPresenter.loading(true)
     }
 
     override fun onBackPressed() {
@@ -139,11 +140,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main_nav, menu)
+        menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_about -> run {
+                AboutActivity.start(this)
+                return true
+            }
+        }
 
         return super.onOptionsItemSelected(item)
     }
