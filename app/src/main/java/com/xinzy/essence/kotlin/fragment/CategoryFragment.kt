@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.xinzy.essence.kotlin.R
+import com.xinzy.essence.kotlin.activity.WebViewActivity
 import com.xinzy.essence.kotlin.adapter.EssenceAdapter
 import com.xinzy.essence.kotlin.base.find
 import com.xinzy.essence.kotlin.contract.CategoryContract
@@ -76,7 +77,11 @@ class CategoryFragment : Fragment(), CategoryContract.View, SwipeRefreshLayout.O
         mRecyclerView.addItemDecoration(RecyclerItemDecoration(context))
 
         mRecyclerView.layoutManager = LinearLayoutManager(context)
-        mAdapter.setOnClickListener(View.OnClickListener { /* TODO */ })
+        mAdapter.setOnItemClickListener(object: EssenceAdapter.OnItemClickListener {
+            override fun onItemClick(essence: Essence?) {
+                if (essence != null) WebViewActivity.start(this@CategoryFragment.context, essence)
+            }
+        })
         mRecyclerView.adapter = mAdapter
     }
 

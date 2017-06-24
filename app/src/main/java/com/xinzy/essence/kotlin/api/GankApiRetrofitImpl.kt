@@ -38,5 +38,19 @@ class GankApiRetrofitImpl : GankApi {
 
     override fun day(year: Int, month: Int, day: Int, callback: ApiCallback<DayType>?) {
 
+        callback?.onStart()
+
+        val service: GankService = HttpUtil.getRetrofit().create(GankService::class.java)
+        val call = service.day(year, month, day)
+        call.enqueue(object: Callback<DayType> {
+            override fun onFailure(call: Call<DayType>?, t: Throwable?) {
+                callback?.onFailure(EssenceException(t))
+            }
+
+            override fun onResponse(call: Call<DayType>?, response: Response<DayType>?) {
+                val data = response?.body()
+                callback?.onSuccess(data)
+            }
+        })
     }
 }

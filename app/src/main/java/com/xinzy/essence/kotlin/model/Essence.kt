@@ -46,7 +46,7 @@ class Essence : Parcelable {
     companion object {
         @JvmField val CREATOR: Parcelable.Creator<Essence> = object : Parcelable.Creator<Essence> {
             override fun createFromParcel(source: Parcel): Essence = Essence(source)
-            override fun newArray(size: Int): Array<Essence?> = arrayOfNulls(size)
+            override fun newArray(size: Int): Array<Essence?> = newArray(size)
         }
     }
 

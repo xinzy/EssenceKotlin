@@ -88,7 +88,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
             override fun onTextClick(view: View, essence: Essence) {
-                // TODO
+                DayActivity.start(this@MainActivity, essence)
             }
         })
         mRecyclerView.adapter = mAdapter
