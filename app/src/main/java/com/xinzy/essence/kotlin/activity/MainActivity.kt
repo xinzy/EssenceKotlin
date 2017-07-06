@@ -150,14 +150,21 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 AboutActivity.start(this)
                 return true
             }
+            R.id.action_search -> {
+
+                return true
+            }
         }
 
         return super.onOptionsItemSelected(item)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        CategoryActivity.start(this, item.title.toString())
+        if (item.groupId == R.id.menuCategory) {
+            CategoryActivity.start(this, item.title.toString())
+        } else {
 
+        }
         mDrawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
