@@ -56,6 +56,11 @@ class EssenceAdapter : RecyclerView.Adapter<EssenceAdapter.Holder>() {
         notifyItemInserted(count)
     }
 
+    fun clear() {
+        mDatas.clear()
+        notifyDataSetChanged()
+    }
+
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val titleText: TextView = itemView.find(R.id.itemTitle)
         private val authorText: TextView = itemView.find(R.id.authorText)

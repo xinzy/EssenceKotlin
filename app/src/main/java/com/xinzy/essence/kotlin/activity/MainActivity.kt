@@ -151,7 +151,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 return true
             }
             R.id.action_search -> {
-
+                SearchActivity.start(this, find(R.id.mainAppBar))
                 return true
             }
         }

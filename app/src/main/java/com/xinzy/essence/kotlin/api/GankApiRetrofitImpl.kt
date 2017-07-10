@@ -53,4 +53,23 @@ class GankApiRetrofitImpl : GankApi {
             }
         })
     }
+
+    override fun search(keyword: String, category: String, count: Int, page: Int, callback: ApiCallback<List<Essence>>?): Call<ListSimple<Essence>> {
+        callback?.onStart()
+
+        val service: GankService = HttpUtil.getRetrofit().create(GankService::class.java)
+        val call = service.search(keyword, category, count, page)
+        call.enqueue(object: Callback<ListSimple<Essence>> {
+            override fun onFailure(call: Call<ListSimple<Essence>>?, t: Throwable?) {
+                callback?.onFailure(EssenceException(t))
+            }
+
+            override fun onResponse(call: Call<ListSimple<Essence>>?, response: Response<ListSimple<Essence>>?) {
+                val data = response?.body()
+                callback?.onSuccess(data?.results)
+            }
+        })
+
+        return call
+    }
 }
