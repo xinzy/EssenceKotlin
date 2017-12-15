@@ -51,10 +51,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setSupportActionBar(toolbar)
 
         val fab: FloatingActionButton = find(R.id.fab)
-        fab.setOnClickListener({ view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        })
+        fab.setOnClickListener{ _ -> mPresenter.start()}
 
         mDrawerLayout = find(R.id.drawer_layout)
         val toggle = ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -65,7 +62,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         navigationView.inflateMenu(R.menu.menu_main_nav)
         navigationView.setNavigationItemSelectedListener(this)
 
-        val themeSwitcher = MenuItemCompat.getActionView(navigationView.menu.findItem(R.id.menuTheme)).findViewById(R.id.viewSwitch) as SwitchCompat
+        val themeSwitcher: SwitchCompat = MenuItemCompat.getActionView(navigationView.menu.findItem(R.id.menuTheme)).find(R.id.viewSwitch)
         themeSwitcher.isChecked = isNightMode()
         themeSwitcher.setOnCheckedChangeListener { _, isChecked -> run {
             setNightMode(isChecked)

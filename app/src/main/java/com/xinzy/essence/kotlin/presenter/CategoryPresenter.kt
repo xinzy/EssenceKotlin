@@ -51,6 +51,7 @@ class CategoryPresenter : CategoryContract.Presenter {
                 isLoading = false
                 mView.hideRefresh()
                 mView.showData(data, refresh)
+                mPage ++
             }
 
             override fun onFailure(e: EssenceException) {

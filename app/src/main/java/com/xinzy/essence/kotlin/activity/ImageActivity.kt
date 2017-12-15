@@ -3,9 +3,9 @@ package com.xinzy.essence.kotlin.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.view.ViewCompat
@@ -18,6 +18,8 @@ import com.xinzy.essence.kotlin.R
 import com.xinzy.essence.kotlin.base.BaseActivity
 import com.xinzy.essence.kotlin.base.find
 import com.xinzy.essence.kotlin.model.Essence
+import com.xinzy.essence.kotlin.util.Utils
+import java.io.File
 
 class ImageActivity : BaseActivity() {
 
@@ -43,14 +45,15 @@ class ImageActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        val toolbar: Toolbar = find(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        val fab = findViewById(R.id.fab) as FloatingActionButton
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        val fab: FloatingActionButton = find(R.id.fab)
+        fab.setOnClickListener { _ ->
+            val pictureDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            val filename = "" + System.currentTimeMillis() + ".jpg"
+            Utils.download(mEssence.url, File(pictureDir, filename))
         }
 
         appbarLayout = find(R.id.appbar)

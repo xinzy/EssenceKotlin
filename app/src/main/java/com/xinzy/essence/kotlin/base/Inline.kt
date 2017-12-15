@@ -10,9 +10,9 @@ import android.widget.Toast
  * Created by Xinzy on 2017/6/14.
  */
 
-inline fun <reified T : View> View.find(id: Int): T = findViewById(id) as T
-inline fun <reified T : View> Activity.find(id: Int): T = findViewById(id) as T
-inline fun <reified T : View> Fragment.find(id: Int): T = view?.findViewById(id) as T
+inline fun <reified T : View> View.find(id: Int): T = findViewById(id)
+inline fun <reified T : View> Activity.find(id: Int): T = findViewById(id)
+inline fun <reified T : View> Fragment.find(id: Int): T = view?.findViewById<T>(id) as T
 
 
 fun Activity.dp2px(dp: Int) = (resources.displayMetrics.density * dp + 0.5f).toInt()

@@ -1,5 +1,9 @@
 package com.xinzy.essence.kotlin.util
 
+import okhttp3.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.util.*
 
 
@@ -10,7 +14,7 @@ import java.util.*
 object Utils {
 
     fun format(date: Date): String {
-        return format(date.getTime())
+        return format(date.time)
     }
 
     fun format(time: Long): String {
@@ -28,5 +32,31 @@ object Utils {
             return (diffSecond / 60 / 60 / 24 / 30).toString() + "月前"
         }
         return (diffSecond / 60 / 60 / 24 / 365).toString() + "年前"
+    }
+
+    fun download(url: String, file: File) {
+        val client = OkHttpClient.Builder().build()
+        val request = Request.Builder().url(url).get().build()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call?, e: IOException?) {}
+
+            override fun onResponse(call: Call?, response: Response?) {
+                val inputSteam = response?.body()?.byteStream()
+                inputSteam?.let {
+                    val bufferSize = 8 * 1024
+                    val buffer = ByteArray(bufferSize)
+                    val fos = FileOutputStream(file)
+
+                    var length: Int
+                    do {
+                        length = inputSteam.read(buffer, 0 , bufferSize)
+                        if (length > 0) fos.write(buffer, 0, length)
+                    } while (length > 0)
+
+                    inputSteam.close()
+                    fos.close()
+                }
+            }
+        })
     }
 }
