@@ -1,11 +1,12 @@
 package com.xinzy.essence.kotlin.model
 
+import android.support.annotation.Keep
 import android.util.ArrayMap
 
 /**
  * Created by Xinzy on 2017/6/14.
  */
-
+@Keep
 class DayType {
     var error: Boolean = false
     var category: List<String> = listOf()

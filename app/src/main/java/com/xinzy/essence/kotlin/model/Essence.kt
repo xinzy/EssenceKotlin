@@ -2,6 +2,7 @@ package com.xinzy.essence.kotlin.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.annotation.Keep
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
@@ -9,6 +10,7 @@ import java.util.*
  * Created by Xinzy on 2017/6/14.
  *
  */
+@Keep
 class Essence : Parcelable {
     constructor()
 
@@ -46,7 +48,7 @@ class Essence : Parcelable {
     companion object {
         @JvmField val CREATOR: Parcelable.Creator<Essence> = object : Parcelable.Creator<Essence> {
             override fun createFromParcel(source: Parcel): Essence = Essence(source)
-            override fun newArray(size: Int): Array<Essence?> = newArray(size)
+            override fun newArray(size: Int): Array<Essence?> = arrayOfNulls(size)
         }
     }
 
