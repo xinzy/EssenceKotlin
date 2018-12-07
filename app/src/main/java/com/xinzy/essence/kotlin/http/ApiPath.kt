@@ -4,7 +4,7 @@ package com.xinzy.essence.kotlin.http
  * Created by Xinzy on 2017/6/14.
  */
 
-const val BASE_URL = "http://gank.io"
+const val BASE_URL = "https://gank.io"
 
 /**
  * 所有干货，支持配图数据返回 （除搜索 Api）

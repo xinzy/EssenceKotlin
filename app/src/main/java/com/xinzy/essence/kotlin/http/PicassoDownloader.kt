@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import com.squareup.picasso.Downloader
 import com.squareup.picasso.NetworkPolicy
+import com.xinzy.essence.kotlin.util.Utils.httpClientBuilder
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.OkHttpClient
@@ -15,7 +16,7 @@ import java.io.File
  */
 class PicassoDownloader(context: Context) : Downloader {
     private val cacheSize = 20 * 1024 * 1024L
-    private val httpClient: OkHttpClient = OkHttpClient.Builder().cache(Cache(File(context.externalCacheDir, "picasso"), cacheSize)).build()
+    private val httpClient: OkHttpClient = httpClientBuilder().cache(Cache(File(context.externalCacheDir, "picasso"), cacheSize)).build()
 
     override fun load(uri: Uri?, networkPolicy: Int): Downloader.Response {
         val builder = CacheControl.Builder()

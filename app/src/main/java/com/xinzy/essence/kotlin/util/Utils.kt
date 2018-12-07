@@ -1,10 +1,14 @@
 package com.xinzy.essence.kotlin.util
 
+import com.xinzy.essence.kotlin.BuildConfig
 import okhttp3.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.security.cert.X509Certificate
 import java.util.*
+import javax.net.ssl.SSLContext
+import javax.net.ssl.X509TrustManager
 
 
 /**
@@ -35,7 +39,7 @@ object Utils {
     }
 
     fun download(url: String, file: File) {
-        val client = OkHttpClient.Builder().build()
+        val client = httpClientBuilder().build()
         val request = Request.Builder().url(url).get().build()
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call?, e: IOException?) {}
@@ -58,5 +62,32 @@ object Utils {
                 }
             }
         })
+    }
+
+    fun httpClientBuilder(): OkHttpClient.Builder {
+        val manager = TrustAllManager()
+        val sslContext = SSLContext.getInstance("TLS")
+        sslContext.init(null, arrayOf(manager), null)
+
+        val builder = OkHttpClient.Builder()
+        if (BuildConfig.DEBUG) {
+            builder.hostnameVerifier { _, _ -> true }.sslSocketFactory(sslContext.socketFactory, manager)
+        }
+
+        return builder
+
+    }
+}
+
+
+private class TrustAllManager : X509TrustManager {
+    override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {
+    }
+
+    override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {
+    }
+
+    override fun getAcceptedIssuers(): Array<X509Certificate> {
+        return arrayOf()
     }
 }

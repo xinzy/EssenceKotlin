@@ -1,7 +1,7 @@
 package com.xinzy.essence.kotlin.http
 
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.xinzy.essence.kotlin.util.Utils
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
@@ -15,14 +15,20 @@ class HttpUtil {
 
 
     companion object {
-        val sOkHttpClient: OkHttpClient = OkHttpClient.Builder().build()
 
-        val gson: Gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create()
-        val sRxRetrofit: Retrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create(gson))
-                .client(getClient()).addCallAdapterFactory(RxJavaCallAdapterFactory.create()).baseUrl(BASE_URL).build()
+        private var sRxRetrofit: Retrofit? = null
 
-        fun getClient() = sOkHttpClient
+        fun getRetrofit(): Retrofit {
+            if (sRxRetrofit == null) {
+                val client: OkHttpClient = Utils.httpClientBuilder().build()
+                val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create()
 
-        fun getRetrofit() = sRxRetrofit
+                sRxRetrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create(gson))
+                       .client(client).addCallAdapterFactory(RxJavaCallAdapterFactory.create()).baseUrl(BASE_URL).build()
+            }
+
+            return sRxRetrofit!!
+        }
     }
+
 }
